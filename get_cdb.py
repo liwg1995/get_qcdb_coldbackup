@@ -89,8 +89,11 @@ def download_qcloud():
     print ("Download completed")
     f.close()
     if os.path.isfile(file_name) == True :
-        os.system("sudo mysql -uroot -p123 mysql < %s " % file_name)
-
+       try:
+            os.system("sudo mysql -uroot mysql < %s " % file_name)
+            print "还原成功！数据库密码更改为 '空' "
+        except:
+            print "不存备份文件或者已经损坏，亦或者数据库帐户或者密码错误！"    
         # 创建只读帐号
         # os.system("sudo mysql  -e 'CREATE USER focuscrm_r@localhost IDENTIFIED BY '1234qwer'' ")
         # os.system("sudo mysql  -e 'GRANT select on focuscrm.* TO focuscrm_r@localhost' ")

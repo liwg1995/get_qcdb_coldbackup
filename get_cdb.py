@@ -88,5 +88,12 @@ def download_qcloud():
         print status
     print ("Download completed")
     f.close()
+    if os.path.isfile(file_name) == True :
+        os.system("sudo mysql -uroot -p123 mysql < %s " % file_name)
 
+        # 创建只读帐号
+        # os.system("sudo mysql  -e 'CREATE USER focuscrm_r@localhost IDENTIFIED BY '1234qwer'' ")
+        # os.system("sudo mysql  -e 'GRANT select on focuscrm.* TO focuscrm_r@localhost' ")
+    else:
+        print "不存在备份文件"
 download_qcloud()

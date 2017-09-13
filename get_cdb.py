@@ -88,5 +88,13 @@ def download_qcloud():
         print status
     print ("Download completed")
     f.close()
+    # 还原至mysql
+    if os.path.isfile(file_name) == True :
+        os.system("sudo mysql -u*** -p*** mysql < $s " % file_name)
 
+        # 创建只读帐号
+        os.system("sudo mysql  -e 'CREATE USER ***@localhost IDENTIFIED BY '***'' ")
+        os.system("sudo mysql  -e 'GRANT select on * TO ***@localhost' ")
+    else:
+        pass
 download_qcloud()
